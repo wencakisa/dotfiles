@@ -1,0 +1,27 @@
+[user]
+  name = wencakisa
+  email = wencakisa@gmail.com
+
+[alias]
+  undo = reset --soft HEAD^
+  amend = commit --amend
+  unstage = reset HEAD
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
+
+[core]
+  excludesfile = ~/.gitignore_global
+  editor = vim
+
+[push]
+  default = current
