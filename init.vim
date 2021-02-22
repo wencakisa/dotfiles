@@ -1,3 +1,5 @@
+set rtp^=~/.vim
+
 set nocompatible
 
 " Show command in the bottom-right corner of the screen
@@ -34,8 +36,11 @@ set scrolloff=5
 " Allow usage of mouse for all modes.
 set mouse=a
 
-" Prevent VIM from wrapping lines on a new line
+" Do not wrap lines on a new line
 set tw=0
+
+" Highlight current line
+set cursorline
 
 " Trim trailing whitespace
 autocmd BufWritePre <buffer> :%s/\s\+$//e
@@ -107,11 +112,73 @@ nnoremap <leader>n :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
+" Go to tab by number
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
+nnoremap <leader>0 :tablast<cr>
+inoremap <leader>1 <Esc>1gtA
+inoremap <leader>2 <Esc>2gtA
+inoremap <leader>3 <Esc>3gtA
+inoremap <leader>4 <Esc>4gtA
+inoremap <leader>5 <Esc>5gtA
+inoremap <leader>6 <Esc>6gtA
+inoremap <leader>7 <Esc>7gtA
+inoremap <leader>8 <Esc>8gtA
+inoremap <leader>9 <Esc>9gtA
+inoremap <leader>0 <Esc>:tablast<CR>A
+
+" Faster moving through windows
+nnoremap <C-w> <C-w><C-w>
+
+" Scroll COC suggestion list with tab
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" CamelCaseMotion
+let g:camelcasemotion_key = '<leader>'
+
+" Start NERDTree and put the cursor back in the other window.
+autocmd VimEnter * NERDTree | wincmd p
+
+" Open the existing NERDTree on each new tab.
+autocmd BufWinEnter * silent NERDTreeMirror
+
+" Ignore unnecessary files & folders in NERDTree
+let NERDTreeIgnore = ['\.pyc$', '__pycache__', 'node_modules', 'media', 'staticfiles']
+
+" Use the silver searcher for fuzzy-finding
+let $FZF_DEFAULT_COMMAND = 'ag --ignore .git --ignore media --ignore staticfiles -g ""'
+
+" COC extensions
+let g:coc_global_extensions = ['coc-python', 'coc-tsserver']
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
+
+" Airline customizations
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+let g:airline#extensions#branch#enabled = 1
+
 " -------
 " Plugins
 " -------
 
 call plug#begin()
+  " Git
+  Plug 'tpope/vim-fugitive'
+
   " Comment stuff out
   Plug 'tpope/vim-commentary'
 
@@ -134,22 +201,15 @@ call plug#begin()
   " NERDTree
   Plug 'preservim/nerdtree'
 
-  " TODO: airline
+  " Airline
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+
+  " JavaScript / JSX
+  Plug 'pangloss/vim-javascript'
+  Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 
 " Dracula theme settings
 let g:dracula_italic=0
 colorscheme dracula
-
-" CamelCaseMotion
-let g:camelcasemotion_key = '<leader>'
-
-" Start NERDTree and put the cursor back in the other window.
-autocmd VimEnter * NERDTree | wincmd p
-
-" Ignore unnecessary files & folders in NERDTree
-let NERDTreeIgnore = ['\.pyc$', '__pycache__', 'node_modules', 'media', 'staticfiles']
-
-" Use the silver searcher for fuzzy-finding
-let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git --ignore media --ignore staticfiles -g ""'
-
