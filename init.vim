@@ -208,8 +208,14 @@ call plug#begin()
   " JavaScript / JSX
   Plug 'pangloss/vim-javascript'
   Plug 'maxmellon/vim-jsx-pretty'
+
+  " Python
+  Plug 'vim-python/python-syntax'
 call plug#end()
 
 " Dracula theme settings
 let g:dracula_italic=0
 colorscheme dracula
+
+" Python highlighting
+let g:python_highlight_all = 1
