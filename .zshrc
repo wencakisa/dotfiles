@@ -115,3 +115,4 @@ eval "$(pyenv virtualenv-init -)"
 export PATH="/snap/bin:$PATH"
 
 export BROWSER=none
+
