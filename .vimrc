@@ -197,9 +197,6 @@ autocmd VimEnter * call AirlineInit()
 " Python highlighting
 let g:python_highlight_all=1
 
-" Dracula theme settings
-let g:dracula_italic=0
-
 " -------
 " Plugins
 " -------
@@ -218,8 +215,8 @@ call plug#begin()
   " CamelCase / snake_case motion
   Plug 'bkad/CamelCaseMotion'
 
-  " Dracula theme
-  Plug 'dracula/vim', { 'as': 'dracula' }
+  " Color themes
+  Plug 'morhetz/gruvbox'
 
   " Intellisense
   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
@@ -243,4 +240,4 @@ call plug#begin()
   Plug 'vim-python/python-syntax'
 call plug#end()
 
-colorscheme dracula
+colorscheme gruvbox
