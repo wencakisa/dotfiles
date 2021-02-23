@@ -78,9 +78,9 @@ autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4
 "  4 -> solid underscore
 "  5 -> blinking vertical bar
 "  6 -> solid vertical bar
-let &t_SI = "\<Esc>]50;CursorShape=1\x7" " SI = INSERT mode
-let &t_SR = "\<Esc>]50;CursorShape=2\x7" " SR = REPLACE mode
-let &t_EI = "\<Esc>]50;CursorShape=0\x7" " EI = NORMAL mode
+let &t_SI="\<Esc>]50;CursorShape=1\x7" " SI=INSERT mode
+let &t_SR="\<Esc>]50;CursorShape=2\x7" " SR=REPLACE mode
+let &t_EI="\<Esc>]50;CursorShape=0\x7" " EI=NORMAL mode
 
 " ----------
 " Remappings
@@ -156,7 +156,7 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 " inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " CamelCaseMotion
-let g:camelcasemotion_key = '<leader>'
+let g:camelcasemotion_key='<leader>'
 
 " Start NERDTree and put the cursor back in the other window.
 autocmd VimEnter * NERDTree | wincmd p
@@ -165,25 +165,31 @@ autocmd VimEnter * NERDTree | wincmd p
 autocmd BufWinEnter * silent NERDTreeMirror
 
 " Ignore unnecessary files & folders in NERDTree
-let NERDTreeIgnore = ['\.pyc$', '__pycache__', 'node_modules', 'media', 'staticfiles']
+let NERDTreeIgnore=['\.pyc$', '__pycache__', 'node_modules', 'media', 'staticfiles']
 
 " Use the silver searcher for fuzzy-finding
-let $FZF_DEFAULT_COMMAND = 'ag --ignore .git --ignore media --ignore staticfiles -g ""'
+let $FZF_DEFAULT_COMMAND='ag --ignore .git --ignore media --ignore staticfiles -g ""'
 
 " COC extensions
-let g:coc_global_extensions = ['coc-python', 'coc-tsserver']
+let g:coc_global_extensions=['coc-python', 'coc-tsserver']
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
-  let g:coc_global_extensions += ['coc-prettier']
+  let g:coc_global_extensions+=['coc-prettier']
 endif
 if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
-  let g:coc_global_extensions += ['coc-eslint']
+  let g:coc_global_extensions+=['coc-eslint']
 endif
 
 " Airline customizations
-let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#formatter='unique_tail'
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#branch#enabled=1
+
+" Python highlighting
+let g:python_highlight_all=1
+
+" Dracula theme settings
+let g:dracula_italic=0
 
 " -------
 " Plugins
@@ -228,9 +234,4 @@ call plug#begin()
   Plug 'vim-python/python-syntax'
 call plug#end()
 
-" Dracula theme settings
-let g:dracula_italic=0
 colorscheme dracula
-
-" Python highlighting
-let g:python_highlight_all = 1
