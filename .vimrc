@@ -182,8 +182,17 @@ endif
 
 " Airline customizations
 let g:airline#extensions#tabline#formatter='unique_tail'
-let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline#extensions#branch#enabled=1
+let g:airline#extensions#hunks#enabled=0
+
+function! AirlineInit()
+  let g:airline_section_x=''
+  let g:airline_section_y=''
+  let g:airline_section_z=airline#section#create(['%l/%L'])
+
+  let g:airline_symbols.branch=''
+endfunction
+autocmd VimEnter * call AirlineInit()
 
 " Python highlighting
 let g:python_highlight_all=1
