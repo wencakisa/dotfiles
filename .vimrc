@@ -1,5 +1,3 @@
-set rtp^=~/.vim
-
 set nocompatible
 
 " Show command in the bottom-right corner of the screen
@@ -13,7 +11,7 @@ set wildmode=longest:list,full
 let mapleader=' '
 
 " Use system clipboard
-set clipboard=unnamedplus
+set clipboard+=unnamedplus
 
 " Indentation
 set expandtab
@@ -33,14 +31,20 @@ set autoread
 " Helps with the neck pain :P
 set scrolloff=5
 
-" Allow usage of mouse for all modes.
-set mouse=a
+" Disable usage of mouse for all modes.
+set mouse-=a
 
 " Do not wrap lines on a new line
 set tw=0
 
 " Highlight current line
 set cursorline
+
+" Better, faster, stronger
+set ttyfast
+
+" Time in milliseconds to wait for a key code sequence to complete.
+set ttimeoutlen=50
 
 " Trim trailing whitespace
 autocmd BufWritePre <buffer> :%s/\s\+$//e
@@ -85,11 +89,21 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7" " EI = NORMAL mode
 " Shift-tab
 inoremap <S-Tab> <C-d>
 
-" No arrow keys in normal mode :P
-nmap <up> <nop>
-nmap <down> <nop>
-nmap <left> <nop>
-nmap <right> <nop>
+" No arrow keys :P
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+vnoremap <up> <nop>
+vnoremap <down> <nop>
+vnoremap <left> <nop>
+vnoremap <right> <nop>
 
 " Map <C-a> to select the entire content of the file
 nnoremap <C-a> ggVG
@@ -139,7 +153,7 @@ nnoremap <C-w> <C-w><C-w>
 
 " Scroll COC suggestion list with tab
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " CamelCaseMotion
 let g:camelcasemotion_key = '<leader>'
