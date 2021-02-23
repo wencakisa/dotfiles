@@ -1,3 +1,4 @@
+" Use VIM settings rather than Vi settings
 set nocompatible
 
 " Show command in the bottom-right corner of the screen
@@ -5,10 +6,6 @@ set showcmd
 
 " Command-line autocompletion
 set wildmenu
-set wildmode=longest:list,full
-
-" Leader is <Space>
-let mapleader=' '
 
 " Use system clipboard
 set clipboard+=unnamedplus
@@ -85,6 +82,9 @@ let &t_EI="\<Esc>]50;CursorShape=0\x7" " EI=NORMAL mode
 " ----------
 " Remappings
 " ----------
+
+" Leader is <Space>
+let mapleader=' '
 
 " Shift-tab
 inoremap <S-Tab> <C-d>
