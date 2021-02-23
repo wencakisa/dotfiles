@@ -192,6 +192,7 @@ let g:airline#extensions#branch#enabled = 1
 call plug#begin()
   " Git
   Plug 'tpope/vim-fugitive'
+  Plug 'airblade/vim-gitgutter'
 
   " Comment stuff out
   Plug 'tpope/vim-commentary'
