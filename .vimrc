@@ -185,6 +185,9 @@ let g:airline#extensions#tabline#formatter='unique_tail'
 let g:airline#extensions#branch#enabled=1
 let g:airline#extensions#hunks#enabled=0
 
+" Use powerline fonts
+let g:airline_powerline_fonts=1
+
 function! AirlineInit()
   let g:airline_section_x=''
   let g:airline_section_y=''
@@ -193,6 +196,15 @@ function! AirlineInit()
   let g:airline_symbols.branch=''
 endfunction
 autocmd VimEnter * call AirlineInit()
+
+" Tablines
+let g:airline#extensions#tabline#enabled=1           " Enable airline tabline
+let g:airline#extensions#tabline#tabs_label=''       " Do not display prefix before the tabs
+let g:airline#extensions#tabline#show_buffers=0      " Do not show buffers in the tabline
+let g:airline#extensions#tabline#show_splits=0       " Do not show splits in the tabline
+let g:airline#extensions#tabline#tab_min_count=2     " Minimum of 2 tabs needed to display the tabline
+let g:airline#extensions#tabline#show_tab_nr=0       " Disable tab numbers
+let g:airline#extensions#tabline#show_close_button=0 " Remove 'X' at the end of the tabline
 
 " Python highlighting
 let g:python_highlight_all=1
