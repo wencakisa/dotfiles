@@ -153,7 +153,6 @@ nnoremap <C-w> <C-w><C-w>
 
 " Scroll COC suggestion list with tab
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " CamelCaseMotion
 let g:camelcasemotion_key='<leader>'
@@ -180,13 +179,27 @@ if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions+=['coc-eslint']
 endif
 
-" Airline customizations
-let g:airline#extensions#tabline#formatter='unique_tail'
+" -------
+" Airline
+" -------
+
+" Enable Git branch info via fugitive
 let g:airline#extensions#branch#enabled=1
+" Disable hunks info
 let g:airline#extensions#hunks#enabled=0
 
 " Use powerline fonts
 let g:airline_powerline_fonts=1
+
+" Tablines
+let g:airline#extensions#tabline#enabled=1                        " Enable airline tabline
+let g:airline#extensions#tabline#tabs_label=''                    " Do not display prefix before the tabs
+let g:airline#extensions#tabline#show_buffers=0                   " Do not show buffers in the tabline
+let g:airline#extensions#tabline#show_splits=0                    " Do not show splits in the tabline
+let g:airline#extensions#tabline#tab_min_count=2                  " Minimum of 2 tabs needed to display the tabline
+let g:airline#extensions#tabline#show_tab_nr=0                    " Disable tab numbers
+let g:airline#extensions#tabline#show_close_button=0              " Remove 'X' at the end of the tabline
+let g:airline#extensions#tabline#formatter='unique_tail_improved' " Display filenames as f/f/filename.ext
 
 function! AirlineInit()
   let g:airline_section_x=''
@@ -196,15 +209,6 @@ function! AirlineInit()
   let g:airline_symbols.branch=''
 endfunction
 autocmd VimEnter * call AirlineInit()
-
-" Tablines
-let g:airline#extensions#tabline#enabled=1           " Enable airline tabline
-let g:airline#extensions#tabline#tabs_label=''       " Do not display prefix before the tabs
-let g:airline#extensions#tabline#show_buffers=0      " Do not show buffers in the tabline
-let g:airline#extensions#tabline#show_splits=0       " Do not show splits in the tabline
-let g:airline#extensions#tabline#tab_min_count=2     " Minimum of 2 tabs needed to display the tabline
-let g:airline#extensions#tabline#show_tab_nr=0       " Disable tab numbers
-let g:airline#extensions#tabline#show_close_button=0 " Remove 'X' at the end of the tabline
 
 " Python highlighting
 let g:python_highlight_all=1
