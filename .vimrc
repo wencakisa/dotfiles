@@ -112,21 +112,22 @@ nnoremap <C-a> ggVG
 nnoremap <leader>d dd
 
 " Ctrl+/ comments out a line
-nnoremap <C-_> <esc>:Commentary<esc>
-inoremap <C-_> <esc>:Commentary<esc>A
+nnoremap <C-_> <esc>:Commentary<cr>
+inoremap <C-_> <esc>:Commentary<cr>A
+vnoremap <C-_> :Commentary<cr>
 
 " gd to Go to definition (in the same tab)
 nmap <silent> gd <Plug>(coc-definition)
 " gD to Go to definition (in a new tab)
-nmap <silent> gD :call CocAction('jumpDefinition', 'tab drop')<CR>
+nmap <silent> gD :call CocAction('jumpDefinition', 'tab drop')<cr>
 
 " Ctrl+p to search files with FZF
-nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <C-p> :Files<cr>
 
 " NERDTree mappings
-nnoremap <leader>n :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+nnoremap <leader>n :NERDTree<cr>
+nnoremap <C-t> :NERDTreeToggle<cr>
+nnoremap <C-f> :NERDTreeFind<cr>
 
 " Go to tab by number
 nnoremap <leader>1 1gt
@@ -138,7 +139,7 @@ nnoremap <leader>6 6gt
 nnoremap <leader>7 7gt
 nnoremap <leader>8 8gt
 nnoremap <leader>9 9gt
-nnoremap <leader>0 :tablast<CR>
+nnoremap <leader>0 :tablast<cr>
 inoremap <leader>1 <Esc>1gtA
 inoremap <leader>2 <Esc>2gtA
 inoremap <leader>3 <Esc>3gtA
@@ -148,7 +149,7 @@ inoremap <leader>6 <Esc>6gtA
 inoremap <leader>7 <Esc>7gtA
 inoremap <leader>8 <Esc>8gtA
 inoremap <leader>9 <Esc>9gtA
-inoremap <leader>0 <Esc>:tablast<CR>A
+inoremap <leader>0 <Esc>:tablast<cr>A
 
 " Faster moving through windows
 nnoremap <C-w> <C-w><C-w>
