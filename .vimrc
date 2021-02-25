@@ -115,8 +115,10 @@ nnoremap <leader>d dd
 nnoremap <C-_> <esc>:Commentary<esc>
 inoremap <C-_> <esc>:Commentary<esc>A
 
-" gd to Go to definition
+" gd to Go to definition (in the same tab)
 nmap <silent> gd <Plug>(coc-definition)
+" gD to Go to definition (in a new tab)
+nmap <silent> gD :call CocAction('jumpDefinition', 'tab drop')<CR>
 
 " Ctrl+p to search files with FZF
 nnoremap <silent> <C-p> :Files<CR>
@@ -136,7 +138,7 @@ nnoremap <leader>6 6gt
 nnoremap <leader>7 7gt
 nnoremap <leader>8 8gt
 nnoremap <leader>9 9gt
-nnoremap <leader>0 :tablast<cr>
+nnoremap <leader>0 :tablast<CR>
 inoremap <leader>1 <Esc>1gtA
 inoremap <leader>2 <Esc>2gtA
 inoremap <leader>3 <Esc>3gtA

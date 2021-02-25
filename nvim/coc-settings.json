@@ -8,7 +8,5 @@
       "javascriptreact",
       "css",
       "markdown"
-    ],
-    
-    "eslint.filtypes": ["javascript", "javascriptreact"]
+    ]
 }
