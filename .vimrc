@@ -90,26 +90,15 @@ let mapleader=' '
 inoremap <S-Tab> <C-d>
 
 " No arrow keys :P
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
 
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-
-vnoremap <up> <nop>
-vnoremap <down> <nop>
-vnoremap <left> <nop>
-vnoremap <right> <nop>
-
-" Map <C-a> to select the entire content of the file
-nnoremap <C-a> ggVG
-
-" <leader>d deletes the whole line
-nnoremap <leader>d dd
+noremap! <up> <nop>
+noremap! <down> <nop>
+noremap! <left> <nop>
+noremap! <right> <nop>
 
 " Ctrl+/ comments out a line
 nnoremap <C-_> <esc>:Commentary<cr>
@@ -124,10 +113,13 @@ nmap <silent> gD :call CocAction('jumpDefinition', 'tab drop')<cr>
 " Ctrl+p to search files with FZF
 nnoremap <silent> <C-p> :Files<cr>
 
+" <leader>f searches the word under the cursor
+noremap <silent> <leader>f :Ag <C-R><C-W><CR>
+
 " NERDTree mappings
 nnoremap <leader>n :NERDTree<cr>
 nnoremap <C-t> :NERDTreeToggle<cr>
-nnoremap <C-f> :NERDTreeFind<cr>
+nnoremap <leader>r :NERDTreeFind<cr>
 
 " Go to tab by number
 nnoremap <leader>1 1gt
@@ -159,9 +151,6 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 " CamelCaseMotion
 let g:camelcasemotion_key='<leader>'
-
-" Start NERDTree and put the cursor back in the other window.
-autocmd VimEnter * NERDTree | wincmd p
 
 " Open the existing NERDTree on each new tab.
 autocmd BufWinEnter * silent NERDTreeMirror
