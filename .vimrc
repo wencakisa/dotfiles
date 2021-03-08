@@ -90,15 +90,20 @@ let mapleader=' '
 inoremap <S-Tab> <C-d>
 
 " No arrow keys :P
-noremap <up> <nop>
-noremap <down> <nop>
-noremap <left> <nop>
-noremap <right> <nop>
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
 
-noremap! <up> <nop>
-noremap! <down> <nop>
-noremap! <left> <nop>
-noremap! <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+vnoremap <up> <nop>
+vnoremap <down> <nop>
+vnoremap <left> <nop>
+vnoremap <right> <nop>
 
 " Ctrl+/ comments out a line
 nnoremap <C-_> <esc>:Commentary<cr>
@@ -132,16 +137,6 @@ nnoremap <leader>7 7gt
 nnoremap <leader>8 8gt
 nnoremap <leader>9 9gt
 nnoremap <leader>0 :tablast<cr>
-inoremap <leader>1 <Esc>1gtA
-inoremap <leader>2 <Esc>2gtA
-inoremap <leader>3 <Esc>3gtA
-inoremap <leader>4 <Esc>4gtA
-inoremap <leader>5 <Esc>5gtA
-inoremap <leader>6 <Esc>6gtA
-inoremap <leader>7 <Esc>7gtA
-inoremap <leader>8 <Esc>8gtA
-inoremap <leader>9 <Esc>9gtA
-inoremap <leader>0 <Esc>:tablast<cr>A
 
 " Faster moving through windows
 nnoremap <C-w> <C-w><C-w>
