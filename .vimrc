@@ -200,6 +200,9 @@ autocmd VimEnter * call AirlineInit()
 " Python highlighting
 let g:python_highlight_all=1
 
+" Gruvbox theme settings
+let g:gruvbox_contrast_dark="soft"
+
 " -------
 " Plugins
 " -------
