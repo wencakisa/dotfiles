@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+# Command line utils
+alias zshe='vim ~/.zshrc'
+
+# Python
+alias py='python3'
+alias p='ipython3'
+alias pip='pip3'
+
+# Django
+alias pmr='py manage.py runserver'
+alias pmk='py manage.py makemigrations'
+alias pmm='py manage.py migrate'
+alias pms+='py manage.py shell_plus'
+alias preq='pip freeze > requirements.txt'
+
+# Git
+alias g='git'
+alias got='git'
+alias get='git'
+alias gs='git status'
+alias gc='git commit'
+alias gpl='git pull -p'
+alias gplr='gpl --rebase'
+alias gps='git push'
+alias gl='git log'
+alias glo="git log --graph --decorate --pretty='format:%C(yellow)%h%Cgreen%d%Creset %s %C(white) (%an, %ar)%Creset' --abbrev-commit"
+alias gd='git diff'
+alias go='git checkout'
+alias undo='git restore'
+alias undoall='undo .'
+alias gr='git rebase'
+alias grc='git rebase --continue'
+alias grs='git rebase --skip'
+alias gra='git rebase --abort'
+
+# Meta aliases :O
+alias aliasd='cat ~/.aliases'
+alias aliase='vim ~/.aliases'
+alias aliass='source ~/.aliases'
+
+# Pyenv
+alias pya='pyenv activate'
+alias pyd='pyenv deactivate'
+alias pye='pyenv virtualenv'
+
+# EdLight
+alias ed='cd && pya edlight && j edlight-backend && export DJANGO_READ_DOT_ENV_FILE=True'
+alias edf='cd && j edlight-frontend'
+alias prodshell='heroku run python3 manage.py shell_plus --app edlight-backend-production'
+alias stagshell='heroku run python3 manage.py shell_plus --app edlight-backend-staging'
