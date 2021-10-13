@@ -1,12 +1,16 @@
 {
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
+
+    "angular.experimental-ivy": false,
     
     "coc.preferences.formatOnType": true,
     "coc.preferences.formatOnSaveFiletypes": [
       "javascript",
       "javascriptreact",
+      "typescript",
       "css",
+      "html",
       "markdown"
     ]
 }

@@ -122,9 +122,9 @@ nnoremap <silent> <C-p> :Files<cr>
 noremap <silent> <leader>f :Ag <C-R><C-W><CR>
 
 " NERDTree mappings
-nnoremap <leader>n :NERDTree<cr>
-nnoremap <C-t> :NERDTreeToggle<cr>
-nnoremap <leader>r :NERDTreeFind<cr>
+" nnoremap <leader>n :NERDTree<cr>
+" nnoremap <C-t> :NERDTreeToggle<cr>
+" nnoremap <leader>r :NERDTreeFind<cr>
 
 " Go to tab by number
 nnoremap <leader>1 1gt
@@ -141,6 +141,9 @@ nnoremap <leader>0 :tablast<cr>
 " Faster moving through windows
 nnoremap <C-w> <C-w><C-w>
 
+" Join lines without redundant <space>
+nnoremap J gJ
+
 " Scroll COC suggestion list with tab
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
@@ -148,10 +151,10 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 let g:camelcasemotion_key='<leader>'
 
 " Open the existing NERDTree on each new tab.
-autocmd BufWinEnter * silent NERDTreeMirror
+" autocmd BufWinEnter * silent NERDTreeMirror
 
 " Ignore unnecessary files & folders in NERDTree
-let NERDTreeIgnore=['\.pyc$', '__pycache__', 'node_modules', 'media', 'staticfiles']
+" let NERDTreeIgnore=['\.pyc$', '__pycache__', 'node_modules', 'media', 'staticfiles']
 
 " Use the silver searcher for fuzzy-finding
 let $FZF_DEFAULT_COMMAND='ag --ignore .git --ignore media --ignore staticfiles -g ""'
@@ -165,6 +168,9 @@ endif
 if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions+=['coc-eslint']
 endif
+
+" Update GitGutter on save
+autocmd BufWritePost * GitGutter
 
 " -------
 " Airline
@@ -203,6 +209,10 @@ let g:python_highlight_all=1
 " Gruvbox theme settings
 let g:gruvbox_contrast_dark="soft"
 
+" Expand Emmet on tab
+let g:user_emmet_expandabbr_key='<Tab>'
+imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+
 " -------
 " Plugins
 " -------
@@ -232,18 +242,22 @@ call plug#begin()
   Plug 'junegunn/fzf.vim'
 
   " NERDTree
-  Plug 'preservim/nerdtree'
+  " Plug 'preservim/nerdtree'
 
   " Airline
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
 
-  " JavaScript / JSX
+  " JavaScript / TypeScript / JSX
   Plug 'pangloss/vim-javascript'
   Plug 'maxmellon/vim-jsx-pretty'
+  Plug 'leafgarland/typescript-vim'
 
   " Python
   Plug 'vim-python/python-syntax'
+
+  " Emmet
+  Plug 'mattn/emmet-vim'
 call plug#end()
 
 colorscheme gruvbox

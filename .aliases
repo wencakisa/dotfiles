@@ -20,7 +20,7 @@ alias g='git'
 alias got='git'
 alias get='git'
 alias gs='git status'
-alias gc='git commit'
+alias gc='git commit -v'
 alias gpl='git pull -p'
 alias gplr='gpl --rebase'
 alias gps='git push'
@@ -37,7 +37,7 @@ alias gra='git rebase --abort'
 
 # Meta aliases :O
 alias aliasd='cat ~/.aliases'
-alias aliase='vim ~/.aliases'
+alias aliase='nvim ~/.aliases'
 alias aliass='source ~/.aliases'
 
 # Pyenv
@@ -45,8 +45,12 @@ alias pya='pyenv activate'
 alias pyd='pyenv deactivate'
 alias pye='pyenv virtualenv'
 
-# EdLight
-alias ed='cd && pya edlight && j edlight-backend && export DJANGO_READ_DOT_ENV_FILE=True'
-alias edf='cd && j edlight-frontend'
-alias prodshell='heroku run python3 manage.py shell_plus --app edlight-backend-production'
-alias stagshell='heroku run python3 manage.py shell_plus --app edlight-backend-staging'
+# FernTech
+alias febe='cd && pya ferntech && j ferntech-backend'
+alias fefe='cd && j ferntech-frontend'
+
+# PostgreSQL
+alias postres='sudo systemctl restart postgresql'
+
+# Random
+alias wtrk='curl wttr.in/Kostinbrod'
