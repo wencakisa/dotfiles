@@ -121,11 +121,6 @@ nnoremap <silent> <C-p> :Files<cr>
 " <leader>f searches the word under the cursor
 noremap <silent> <leader>f :Ag <C-R><C-W><CR>
 
-" NERDTree mappings
-" nnoremap <leader>n :NERDTree<cr>
-" nnoremap <C-t> :NERDTreeToggle<cr>
-" nnoremap <leader>r :NERDTreeFind<cr>
-
 " Go to tab by number
 nnoremap <leader>1 1gt
 nnoremap <leader>2 2gt
@@ -149,12 +144,6 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 " CamelCaseMotion
 let g:camelcasemotion_key='<leader>'
-
-" Open the existing NERDTree on each new tab.
-" autocmd BufWinEnter * silent NERDTreeMirror
-
-" Ignore unnecessary files & folders in NERDTree
-" let NERDTreeIgnore=['\.pyc$', '__pycache__', 'node_modules', 'media', 'staticfiles']
 
 " Use the silver searcher for fuzzy-finding
 let $FZF_DEFAULT_COMMAND='ag --ignore .git --ignore media --ignore staticfiles -g ""'
@@ -240,9 +229,6 @@ call plug#begin()
   " Fuzzy-finder
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
-
-  " NERDTree
-  " Plug 'preservim/nerdtree'
 
   " Airline
   Plug 'vim-airline/vim-airline'
