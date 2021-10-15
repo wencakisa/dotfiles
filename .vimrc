@@ -146,7 +146,7 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 let g:camelcasemotion_key='<leader>'
 
 " Use the silver searcher for fuzzy-finding
-let $FZF_DEFAULT_COMMAND='ag --ignore .git --ignore media --ignore staticfiles -g ""'
+let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 " COC extensions
 let g:coc_global_extensions=['coc-python', 'coc-tsserver']
@@ -165,6 +165,9 @@ autocmd BufWritePost * GitGutter
 " Airline
 " -------
 
+" Airline theme
+let g:airline_theme='deus'
+
 " Enable Git branch info via fugitive
 let g:airline#extensions#branch#enabled=1
 " Disable hunks info
@@ -182,11 +185,17 @@ let g:airline#extensions#tabline#tab_min_count=2                  " Minimum of 2
 let g:airline#extensions#tabline#show_tab_nr=0                    " Disable tab numbers
 let g:airline#extensions#tabline#show_close_button=0              " Remove 'X' at the end of the tabline
 let g:airline#extensions#tabline#formatter='unique_tail_improved' " Display filenames as f/f/filename.ext
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'      " Hide the filetype section
 
 function! AirlineInit()
-  let g:airline_section_x=''
+  let g:airline_section_x=airline#section#create(['filetype'])
   let g:airline_section_y=''
   let g:airline_section_z=airline#section#create(['%l/%L'])
+  let g:airline_section_error=''
+  let g:airline_section_warning=''
+
+  " Remove separators for empty sections
+  let g:airline_skip_empty_sections=1
 
   let g:airline_symbols.branch=''
 endfunction
@@ -196,11 +205,9 @@ autocmd VimEnter * call AirlineInit()
 let g:python_highlight_all=1
 
 " Gruvbox theme settings
-let g:gruvbox_contrast_dark="soft"
+let g:gruvbox_contrast_dark="medium"
 
-" Expand Emmet on tab
-let g:user_emmet_expandabbr_key='<Tab>'
-imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+set noshowmode
 
 " -------
 " Plugins
@@ -244,6 +251,9 @@ call plug#begin()
 
   " Emmet
   Plug 'mattn/emmet-vim'
+
+  " File icons based on type
+  Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 colorscheme gruvbox
