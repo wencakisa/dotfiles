@@ -133,9 +133,6 @@ nnoremap <leader>8 8gt
 nnoremap <leader>9 9gt
 nnoremap <leader>0 :tablast<cr>
 
-" Faster moving through windows
-nnoremap <C-w> <C-w><C-w>
-
 " Join lines without redundant <space>
 nnoremap J gJ
 
@@ -143,8 +140,6 @@ nnoremap J gJ
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 " NERDTree bindings
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
@@ -264,7 +259,7 @@ call plug#begin()
   " NERDTree
   Plug 'preservim/nerdtree'
 
-  " Vimade
+  " Highlight focused buffer
   Plug 'TaDaa/vimade'
 call plug#end()
 
