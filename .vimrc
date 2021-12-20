@@ -143,11 +143,17 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
+" Angular mappings
+map ,t :e <C-R>=expand("%:r") . ".html"
+map ,c :e <C-R>=expand("%:r") . ".ts" <CR><CR>
+map ,s :e <C-R>=expand("%:r") . ".scss" <CR><CR>
+
 " CamelCaseMotion
 let g:camelcasemotion_key='<leader>'
 
 " Use the silver searcher for fuzzy-finding
 let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 
 " COC extensions
 let g:coc_global_extensions=['coc-python', 'coc-tsserver']

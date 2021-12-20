@@ -10,6 +10,7 @@
       "javascriptreact",
       "typescript",
       "css",
+      "scss",
       "html",
       "markdown"
     ]
