@@ -144,9 +144,12 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
 " Angular mappings
-map ,t :e <C-R>=expand("%:r") . ".html"
+map ,t :e <C-R>=expand("%:r") . ".html" <CR><CR>
 map ,c :e <C-R>=expand("%:r") . ".ts" <CR><CR>
 map ,s :e <C-R>=expand("%:r") . ".scss" <CR><CR>
+
+" .vimrc binding
+map <leader>ev :tabnew ~/.vimrc<CR>
 
 " CamelCaseMotion
 let g:camelcasemotion_key='<leader>'
@@ -212,7 +215,8 @@ autocmd VimEnter * call AirlineInit()
 let g:python_highlight_all=1
 
 " Gruvbox theme settings
-let g:gruvbox_contrast_dark="medium"
+set bg=dark
+let g:gruvbox_contrast_dark="light"
 
 set noshowmode
 

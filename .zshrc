@@ -135,4 +135,4 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH="$PATH:$(yarn global bin)"
 
-export BAT_THEME="Gruvbox"
+export BAT_THEME="gruvbox-dark"
