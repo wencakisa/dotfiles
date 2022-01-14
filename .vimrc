@@ -119,7 +119,9 @@ nmap <silent> gD :call CocAction('jumpDefinition', 'tab drop')<cr>
 nnoremap <silent> <C-p> :Files<cr>
 
 " <leader>f searches the word under the cursor
-noremap <silent> <leader>f :Ag <C-R><C-W><CR>
+nmap <leader>F <Plug>CtrlSFPrompt
+nmap <leader>f <Plug>CtrlSFCwordExec
+vmap <leader>f <Plug>CtrlSFVwordExec
 
 " Go to tab by number
 nnoremap <leader>1 1gt
@@ -144,19 +146,38 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
 " Angular mappings
-map ,t :e <C-R>=expand("%:r") . ".html" <CR><CR>
-map ,c :e <C-R>=expand("%:r") . ".ts" <CR><CR>
-map ,s :e <C-R>=expand("%:r") . ".scss" <CR><CR>
+nmap ,t :e <C-R>=expand("%:r") . ".html" <CR><CR>
+nmap ,c :e <C-R>=expand("%:r") . ".ts" <CR><CR>
+nmap ,s :e <C-R>=expand("%:r") . ".scss" <CR><CR>
 
 " .vimrc binding
-map <leader>ev :tabnew ~/.vimrc<CR>
+nmap <leader>ev :tabnew ~/.vimrc<CR>
+
+" Toggle color column
+function! ToggleColorColumn()
+  if &colorcolumn != ""
+    set colorcolumn=""
+    return
+  endif
+
+  if (&filetype == "typescript") || (&filetype == "javascript")
+    set colorcolumn=80
+  elseif &filetype == "python"
+    set colorcolumn=120
+  endif
+endfunction
+
+nnoremap <leader>c :call ToggleColorColumn()<CR>
 
 " CamelCaseMotion
 let g:camelcasemotion_key='<leader>'
 
-" Use the silver searcher for fuzzy-finding
-let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+
+" CtrlSF settings
+let g:ctrlsf_auto_focus={
+  \ "at": "start"
+  \ }
 
 " COC extensions
 let g:coc_global_extensions=['coc-python', 'coc-tsserver']
@@ -248,6 +269,9 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
+  " CtrlSF
+  Plug 'dyng/ctrlsf.vim'
+
   " Airline
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
@@ -271,6 +295,8 @@ call plug#begin()
 
   " Highlight focused buffer
   Plug 'TaDaa/vimade'
+
+  Plug 'terryma/vim-multiple-cursors'
 call plug#end()
 
 colorscheme gruvbox
