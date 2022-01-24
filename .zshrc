@@ -120,19 +120,9 @@ source /usr/share/nvm/init-nvm.sh
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-
-export DJANGO_READ_DOT_ENV_FILE=True
-export PYTHONBREAKPOINT=ipdb.set_trace
-
-# React Native settings
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH="$PATH:$(yarn global bin)"
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 export BAT_THEME="gruvbox-dark"

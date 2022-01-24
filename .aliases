@@ -46,7 +46,7 @@ alias pyd='pyenv deactivate'
 alias pye='pyenv virtualenv'
 
 # FernTech
-alias febe='cd && pya ferntech && j ferntech-backend && source envs/staging_influx.sh'
+alias febe='cd && j ferntech-backend && source envs/staging_influx.sh'
 alias fefe='cd && j ferntech-frontend'
 
 # PostgreSQL
