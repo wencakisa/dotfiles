@@ -146,12 +146,20 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
 " Angular mappings
-nmap ,t :e <C-R>=expand("%:r") . ".html" <CR><CR>
-nmap ,c :e <C-R>=expand("%:r") . ".ts" <CR><CR>
-nmap ,s :e <C-R>=expand("%:r") . ".scss" <CR><CR>
+autocmd FileType typescript,scss nmap ,t :e <C-R>=expand("%:r") . ".html" <CR><CR>
+autocmd FileType html,scss       nmap ,c :e <C-R>=expand("%:r") . ".ts" <CR><CR>
+autocmd FileType typescript,html nmap ,s :e <C-R>=expand("%:r") . ".scss" <CR><CR>
+
+" Django mappings
+autocmd FileType python nmap ,s :e <C-R>=expand("%:p:h") . "/services.py" <CR><CR>
+autocmd FileType python nmap ,S :e <C-R>=expand("%:p:h") . "/selectors.py" <CR><CR>
+autocmd FileType python nmap ,a :e <C-R>=expand("%:p:h") . "/apis.py" <CR><CR>
+autocmd FileType python nmap ,u :e <C-R>=expand("%:p:h") . "/urls.py" <CR><CR>
+autocmd FileType python nmap ,m :e <C-R>=expand("%:p:h") . "/models.py" <CR><CR>
+autocmd FileType python nmap ,t :e <C-R>=expand("%:p:h") . "/tasks.py" <CR><CR>
 
 " .vimrc binding
-nmap <leader>ev :tabnew ~/.vimrc<CR>
+nnoremap <leader>ev :tabnew ~/.vimrc<CR>
 
 " Toggle color column
 function! ToggleColorColumn()
@@ -297,6 +305,8 @@ call plug#begin()
   Plug 'TaDaa/vimade'
 
   Plug 'terryma/vim-multiple-cursors'
+
+  Plug 'leafOfTree/vim-matchtag'
 call plug#end()
 
 colorscheme gruvbox
