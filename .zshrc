@@ -125,4 +125,6 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
+export PATH="$PATH:$(yarn global bin)"
+
 export BAT_THEME="gruvbox-dark"
