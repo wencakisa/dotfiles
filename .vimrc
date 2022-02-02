@@ -302,7 +302,7 @@ call plug#begin()
   Plug 'preservim/nerdtree'
 
   " Highlight focused buffer
-  Plug 'TaDaa/vimade'
+  " Plug 'TaDaa/vimade'
 
   Plug 'terryma/vim-multiple-cursors'
 

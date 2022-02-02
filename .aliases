@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+alias vim='nvim'
+
 # Command line utils
 alias zshe='vim ~/.zshrc'
 
@@ -13,31 +15,22 @@ alias pmr='py manage.py runserver'
 alias pmk='py manage.py makemigrations'
 alias pmm='py manage.py migrate'
 alias pms+='py manage.py shell_plus'
-alias preq='pip freeze > requirements.txt'
 
 # Git
-alias g='git'
-alias got='git'
-alias get='git'
 alias gs='git status'
 alias gc='git commit -v'
 alias gpl='git pull -p'
-alias gplr='gpl --rebase'
 alias gps='git push'
-alias gl='git log'
-alias glo="git log --graph --decorate --pretty='format:%C(yellow)%h%Cgreen%d%Creset %s %C(white) (%an, %ar)%Creset' --abbrev-commit"
 alias gd='git diff'
 alias go='git checkout'
 alias undo='git restore'
 alias undoall='undo .'
-alias gr='git rebase'
 alias grc='git rebase --continue'
-alias grs='git rebase --skip'
 alias gra='git rebase --abort'
 
 # Meta aliases :O
 alias aliasd='cat ~/.aliases'
-alias aliase='nvim ~/.aliases'
+alias aliase='vim ~/.aliases'
 alias aliass='source ~/.aliases'
 
 # Pyenv
@@ -48,9 +41,3 @@ alias pye='pyenv virtualenv'
 # FernTech
 alias febe='cd && j ferntech-backend && source envs/staging_influx.sh'
 alias fefe='cd && j ferntech-frontend'
-
-# PostgreSQL
-alias postres='sudo systemctl restart postgresql'
-
-# Random
-alias wtrk='curl wttr.in/Kostinbrod'

@@ -128,3 +128,6 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 export PATH="$PATH:$(yarn global bin)"
 
 export BAT_THEME="gruvbox-dark"
+
+# Automatically update NeoVim plugins & COC extensions
+nvim --headless +PlugInstall +CocUpdate +qall
