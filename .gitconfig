@@ -2,6 +2,19 @@
   name = wencakisa
   email = wencakisa@gmail.com
 
+[core]
+  excludesfile = ~/.gitignore_global
+  editor = nvim
+
+[push]
+  default = current
+
+[init]
+  defaultBranch = master
+
+[blame]
+  date = format:"%d/%m/%Y [%H:%M]"
+
 [alias]
   undo = reset --soft HEAD^
   amend = commit --amend
@@ -18,12 +31,3 @@
   old = red bold
   new = green bold
   whitespace = red reverse
-
-[core]
-  excludesfile = ~/.gitignore_global
-  editor = nvim
-
-[push]
-  default = current
-[init]
-  defaultBranch = master
