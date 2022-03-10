@@ -41,3 +41,5 @@ alias pye='pyenv virtualenv'
 # FernTech
 alias febe='cd && j ferntech-backend && source envs/staging_influx.sh'
 alias fefe='cd && j ferntech-frontend'
+alias apfe='cd && j oes-fe'
+alias apbe='cd && j oes-be'

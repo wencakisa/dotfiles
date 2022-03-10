@@ -140,6 +140,10 @@ nnoremap J gJ
 
 " Scroll COC suggestion list with tab
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Autocomplete on enter
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " NERDTree bindings
 nnoremap <C-t> :NERDTreeToggle<CR>
@@ -168,7 +172,7 @@ function! ToggleColorColumn()
     return
   endif
 
-  if (&filetype == "typescript") || (&filetype == "javascript")
+  if (&filetype == "javascript") || (&filetype == "javascriptreact") || (&filetype == "typescript") || (&filetype == "typescriptreact")
     set colorcolumn=80
   elseif &filetype == "python"
     set colorcolumn=120
@@ -247,6 +251,9 @@ let g:python_highlight_all=1
 set bg=dark
 let g:gruvbox_contrast_dark="light"
 
+" Show hidden files in NERDTree
+let NERDTreeShowHidden=1
+
 set noshowmode
 
 " -------
@@ -288,6 +295,7 @@ call plug#begin()
   Plug 'pangloss/vim-javascript'
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'leafgarland/typescript-vim'
+  Plug 'peitalin/vim-jsx-typescript'
 
   " Python
   Plug 'vim-python/python-syntax'
