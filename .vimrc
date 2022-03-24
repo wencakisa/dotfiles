@@ -43,9 +43,6 @@ set ttyfast
 " Time in milliseconds to wait for a key code sequence to complete.
 set ttimeoutlen=50
 
-" Trim trailing whitespace
-autocmd BufWritePre <buffer> :%s/\s\+$//e
-
 " ------------
 " Line numbers
 " ------------
@@ -136,7 +133,7 @@ nnoremap <leader>9 9gt
 nnoremap <leader>0 :tablast<cr>
 
 " Join lines without redundant <space>
-nnoremap J gJ
+noremap J gJ
 
 " Scroll COC suggestion list with tab
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -148,19 +145,6 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " NERDTree bindings
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
-
-" Angular mappings
-autocmd FileType typescript,scss nmap ,t :e <C-R>=expand("%:r") . ".html" <CR><CR>
-autocmd FileType html,scss       nmap ,c :e <C-R>=expand("%:r") . ".ts" <CR><CR>
-autocmd FileType typescript,html nmap ,s :e <C-R>=expand("%:r") . ".scss" <CR><CR>
-
-" Django mappings
-autocmd FileType python nmap ,s :e <C-R>=expand("%:p:h") . "/services.py" <CR><CR>
-autocmd FileType python nmap ,S :e <C-R>=expand("%:p:h") . "/selectors.py" <CR><CR>
-autocmd FileType python nmap ,a :e <C-R>=expand("%:p:h") . "/apis.py" <CR><CR>
-autocmd FileType python nmap ,u :e <C-R>=expand("%:p:h") . "/urls.py" <CR><CR>
-autocmd FileType python nmap ,m :e <C-R>=expand("%:p:h") . "/models.py" <CR><CR>
-autocmd FileType python nmap ,t :e <C-R>=expand("%:p:h") . "/tasks.py" <CR><CR>
 
 " .vimrc binding
 nnoremap <leader>ev :tabnew ~/.vimrc<CR>
@@ -181,6 +165,14 @@ endfunction
 
 nnoremap <leader>c :call ToggleColorColumn()<CR>
 
+function! VisualReplace(query, replacement)
+  execute "'<,'>s/\\%V" . a:query . '/' . a:replacement . '/g'
+endfunction
+
+function! SnakeReplace(query)
+  call VisualReplace(a:query, '_')
+endfunction
+
 " CamelCaseMotion
 let g:camelcasemotion_key='<leader>'
 
@@ -200,6 +192,9 @@ endif
 if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions+=['coc-eslint']
 endif
+
+" Automatically sort Python imports on save
+autocmd BufWrite *.py :CocCommand python.sortImports
 
 " Update GitGutter on save
 autocmd BufWritePost * GitGutter
@@ -251,8 +246,11 @@ let g:python_highlight_all=1
 set bg=dark
 let g:gruvbox_contrast_dark="light"
 
-" Show hidden files in NERDTree
-let NERDTreeShowHidden=1
+" Highlight and strip whitespace on save
+let g:better_whitespace_enabled=0
+let g:strip_whitespace_on_save=1
+let g:strip_whitelines_at_eof=1
+let g:strip_whitespace_confirm=0
 
 set noshowmode
 
@@ -303,18 +301,15 @@ call plug#begin()
   " Emmet
   Plug 'mattn/emmet-vim'
 
-  " File icons based on type
-  Plug 'ryanoasis/vim-devicons'
-
   " NERDTree
   Plug 'preservim/nerdtree'
-
-  " Highlight focused buffer
-  " Plug 'TaDaa/vimade'
-
-  Plug 'terryma/vim-multiple-cursors'
+  Plug 'ryanoasis/vim-devicons'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
 
   Plug 'leafOfTree/vim-matchtag'
+
+  " Trim trailing whitespace
+  Plug 'ntpeters/vim-better-whitespace'
 call plug#end()
 
 colorscheme gruvbox

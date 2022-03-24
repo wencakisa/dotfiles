@@ -4,6 +4,7 @@ alias vim='nvim'
 
 # Command line utils
 alias zshe='vim ~/.zshrc'
+alias zshh='source ~/.zshrc'
 
 # Python
 alias py='python3'

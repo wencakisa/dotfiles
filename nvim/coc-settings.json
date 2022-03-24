@@ -1,7 +1,4 @@
 {
-  "python.linting.pylintEnabled": false,
-  "python.linting.flake8Enabled": true,
-
   "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
@@ -15,5 +12,8 @@
     "yaml",
     "json",
     "xml"
-  ]
+  ],
+
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": true
 }
