@@ -1,55 +1,5 @@
 lua require('mappings')
-
-" Use VIM settings rather than Vi settings
-set nocompatible
-
-" Show command in the bottom-right corner of the screen
-set showcmd
-
-" Command-line autocompletion
-set wildmenu
-
-" Use system clipboard
-set clipboard+=unnamedplus
-
-" Indentation
-set expandtab
-set tabstop=2 softtabstop=2 shiftwidth=2
-set smartindent
-set nowrap
-
-" Stop certain movements from always going to the first character of a line.
-" While this behaviour deviates from that of Vi, it does what most users
-" coming from other editors would expect.
-set nostartofline
-
-" Watch for file changes
-set autoread
-
-" Start scrolling when you reach five lines before the end of the screen.
-" Helps with the neck pain :P
-set scrolloff=5
-
-" Disable usage of mouse for all modes.
-set mouse-=a
-
-" Do not wrap lines on a new line
-set tw=0
-
-" Highlight current line
-set cursorline
-
-" Better, faster, stronger
-set ttyfast
-
-" Time in milliseconds to wait for a key code sequence to complete.
-set ttimeoutlen=50
-
-" ------------
-" Line numbers
-" ------------
-
-set number relativenumber
+lua require('options')
 
 " Absolute line numbers in INSERT mode
 " Relative line numbers otherwise
@@ -58,11 +8,6 @@ augroup numbertoggle
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
-
-" Searching
-set smartcase
-set ignorecase
-set incsearch
 
 " Python specific settings
 autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4
