@@ -1,3 +1,5 @@
+lua require('mappings')
+
 " Use VIM settings rather than Vi settings
 set nocompatible
 
@@ -80,32 +82,8 @@ let &t_EI="\<Esc>]50;CursorShape=0\x7" " EI=NORMAL mode
 " Remappings
 " ----------
 
-" Leader is <Space>
-let mapleader=' '
-
 " Shift-tab
 inoremap <S-Tab> <C-d>
-
-" No arrow keys :P
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-
-vnoremap <up> <nop>
-vnoremap <down> <nop>
-vnoremap <left> <nop>
-vnoremap <right> <nop>
-
-" Ctrl+/ comments out a line
-nnoremap <C-_> <esc>:Commentary<cr>
-inoremap <C-_> <esc>:Commentary<cr>A
-vnoremap <C-_> :Commentary<cr>
 
 " gd to Go to definition (in the same tab)
 nmap <silent> gd <Plug>(coc-definition)
@@ -172,6 +150,18 @@ endfunction
 function! SnakeReplace(query)
   call VisualReplace(a:query, '_')
 endfunction
+
+function! PrintVar()
+  let selection = expand("<cword>")
+
+  if (&filetype == "javascript") || (&filetype == "javascriptreact") || (&filetype == "typescript") || (&filetype == "typescriptreact")
+    call append(line("."), "console.log('" . selection . ": ', " . selection . ")")
+  elseif &filetype == "python"
+    call append(line("."), "print('" . selection . ": ', " . selection . ")")
+  endif
+endfunction
+
+nnoremap <leader>p :call PrintVar()<CR>
 
 " CamelCaseMotion
 let g:camelcasemotion_key='<leader>'
