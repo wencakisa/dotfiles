@@ -1,11 +1,11 @@
-require('packer').startup(function (use)
+require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
 
   -- Colorscheme
   use {
     'luisiacc/gruvbox-baby',
-    config = function ()
+    config = function()
       vim.opt.background = 'dark'
       vim.g.gruvbox_baby_background_color = 'dark'
       vim.g.gruvbox_baby_function_style = 'NONE'
@@ -19,7 +19,7 @@ require('packer').startup(function (use)
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-    config = function ()
+    config = function()
       require('lualine').setup({
         options = { theme = 'gruvbox-baby' },
         sections = {
@@ -36,7 +36,7 @@ require('packer').startup(function (use)
     'akinsho/bufferline.nvim',
     tag = 'v2.*',
     requires = 'kyazdani42/nvim-web-devicons',
-    config = function ()
+    config = function()
       require('bufferline').setup({
         options = {
           mode = 'tabs',
@@ -58,7 +58,7 @@ require('packer').startup(function (use)
   -- Git blame
   use {
     'f-person/git-blame.nvim',
-    config = function ()
+    config = function()
       -- Disable blame by default, toggle when needed
       vim.g.gitblame_enabled = 0
     end
@@ -71,7 +71,7 @@ require('packer').startup(function (use)
   use 'JoosepAlviste/nvim-ts-context-commentstring'
   use {
     'nvim-treesitter/nvim-treesitter',
-    config = function ()
+    config = function()
       require('nvim-treesitter.configs').setup({
         ensure_installed = {
           'javascript',
@@ -100,56 +100,19 @@ require('packer').startup(function (use)
   -- CamelCaseMotion
   use {
     'bkad/CamelCaseMotion',
-    config = function ()
+    config = function()
       vim.g.camelcasemotion_key = '<leader>'
     end
   }
 
   -- LSP
-  use 'neovim/nvim-lspconfig'
   use {
     'williamboman/nvim-lsp-installer',
-    config = function ()
+    config = function()
       require('nvim-lsp-installer').setup({})
     end
   }
-
-  -- File tree
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-    config = function ()
-      require('nvim-tree').setup()
-    end
-  }
-
-  -- Surround
-  use({
-    'kylechui/nvim-surround',
-    config = function()
-      require('nvim-surround').setup()
-    end
-  })
-
-  -- FZF
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = { 'nvim-lua/plenary.nvim' }
-  }
-
-  -- Trim whitespaces
-  use {
-    'cappyzawa/trim.nvim',
-    config = function ()
-      require('trim').setup({
-        patterns = {
-          [[%s/\s\+$//e]],           -- remove unwanted spaces
-          [[%s/\($\n\s*\)\+\%$//]],  -- trim last line
-          [[%s/\%^\n\+//]]          -- trim first line
-        }
-      })
-    end
-  }
+  use 'neovim/nvim-lspconfig'
 
   -- Completions
   use 'hrsh7th/cmp-nvim-lsp'
@@ -160,7 +123,7 @@ require('packer').startup(function (use)
   use 'hrsh7th/vim-vsnip'
   use {
     'hrsh7th/nvim-cmp',
-    config = function ()
+    config = function()
       vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
       local cmp = require('cmp')
@@ -169,7 +132,7 @@ require('packer').startup(function (use)
       cmp.setup({
         snippet = {
           expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body)
+            vim.fn['vsnip#anonymous'](args.body)
           end
         },
         sources = cmp.config.sources({
@@ -179,7 +142,7 @@ require('packer').startup(function (use)
           ['<Up>'] = cmp.mapping.select_prev_item(select_opts),
           ['<Down>'] = cmp.mapping.select_next_item(select_opts),
           ['<CR>'] = cmp.mapping.confirm({ select = true }),
-          ['<Tab>'] = cmp.mapping(function (fallback)
+          ['<Tab>'] = cmp.mapping(function(fallback)
             local col = vim.fn.col('.') - 1
 
             if cmp.visible() then
@@ -189,15 +152,15 @@ require('packer').startup(function (use)
             else
               cmp.complete()
             end
-          end, {'i', 's'}),
+          end, { 'i', 's' }),
 
-          ['<S-Tab>'] = cmp.mapping(function (fallback)
+          ['<S-Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item(select_opts)
             else
               fallback()
             end
-          end, {'i', 's'})
+          end, { 'i', 's' })
         }
       })
 
@@ -222,6 +185,43 @@ require('packer').startup(function (use)
               globals = { 'vim' }
             }
           }
+        }
+      })
+    end
+  }
+
+  -- File tree
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    config = function()
+      require('nvim-tree').setup()
+    end
+  }
+
+  -- Surround
+  use({
+    'kylechui/nvim-surround',
+    config = function()
+      require('nvim-surround').setup()
+    end
+  })
+
+  -- FZF
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = { 'nvim-lua/plenary.nvim' }
+  }
+
+  -- Trim whitespaces
+  use {
+    'cappyzawa/trim.nvim',
+    config = function()
+      require('trim').setup({
+        patterns = {
+          [[%s/\s\+$//e]], -- remove unwanted spaces
+          [[%s/\($\n\s*\)\+\%$//]], -- trim last line
+          [[%s/\%^\n\+//]] -- trim first line
         }
       })
     end
