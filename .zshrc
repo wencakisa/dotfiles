@@ -133,6 +133,3 @@ wtr() {
   local location=${1-Kostinbrod}
   curl wttr.in/$location
 }
-
-# Automatically update NeoVim plugins & COC extensions
-nvim --headless +PlugInstall +CocUpdate +qall
