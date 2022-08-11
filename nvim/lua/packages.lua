@@ -1,4 +1,4 @@
-require('packer').startup(function()
+require('packer').startup(function (use)
   -- Package manager
   use 'wbthomason/packer.nvim'
 
@@ -110,23 +110,7 @@ require('packer').startup(function()
   use {
     'williamboman/nvim-lsp-installer',
     config = function ()
-      require('nvim-lsp-installer').on_server_ready(function (server)
-        local opts = {}
-
-        if server.name == 'sumneko_lua' then
-          opts = {
-            settings = {
-              Lua = {
-                diagnostics = {
-                  globals = { 'vim', 'use' }
-                }
-              }
-            }
-          }
-        end
-
-        server:setup(opts)
-      end)
+      require('nvim-lsp-installer').setup({})
     end
   }
 
@@ -162,6 +146,82 @@ require('packer').startup(function()
           [[%s/\s\+$//e]],           -- remove unwanted spaces
           [[%s/\($\n\s*\)\+\%$//]],  -- trim last line
           [[%s/\%^\n\+//]]          -- trim first line
+        }
+      })
+    end
+  }
+
+  -- Completions
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/cmp-vsnip'
+  use 'hrsh7th/vim-vsnip'
+  use {
+    'hrsh7th/nvim-cmp',
+    config = function ()
+      vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
+
+      local cmp = require('cmp')
+      local select_opts = { behavior = cmp.SelectBehavior.Select }
+
+      cmp.setup({
+        snippet = {
+          expand = function(args)
+            vim.fn["vsnip#anonymous"](args.body)
+          end
+        },
+        sources = cmp.config.sources({
+          { name = 'nvim_lsp' }
+        }, { name = 'buffer' }),
+        mapping = {
+          ['<Up>'] = cmp.mapping.select_prev_item(select_opts),
+          ['<Down>'] = cmp.mapping.select_next_item(select_opts),
+          ['<CR>'] = cmp.mapping.confirm({ select = true }),
+          ['<Tab>'] = cmp.mapping(function (fallback)
+            local col = vim.fn.col('.') - 1
+
+            if cmp.visible() then
+              cmp.select_next_item(select_opts)
+            elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+              fallback()
+            else
+              cmp.complete()
+            end
+          end, {'i', 's'}),
+
+          ['<S-Tab>'] = cmp.mapping(function (fallback)
+            if cmp.visible() then
+              cmp.select_prev_item(select_opts)
+            else
+              fallback()
+            end
+          end, {'i', 's'})
+        }
+      })
+
+      -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+      cmp.setup.cmdline('/', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = 'buffer' }
+        }
+      })
+
+      local lspconfig = require('lspconfig')
+      local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+      lspconfig.tsserver.setup({ capabilities = capabilities })
+      lspconfig.jedi_language_server.setup({ capabilities = capabilities })
+      lspconfig.sumneko_lua.setup({
+        capabilities = capabilities,
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { 'vim' }
+            }
+          }
         }
       })
     end
