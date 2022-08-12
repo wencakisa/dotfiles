@@ -2,17 +2,25 @@ require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
 
+  -- LSP
+  use {
+    'williamboman/nvim-lsp-installer',
+    config = function()
+      require('nvim-lsp-installer').setup {}
+    end,
+  }
+
+  use 'neovim/nvim-lspconfig'
+
   -- Colorscheme
   use {
-    'luisiacc/gruvbox-baby',
+    'sainnhe/everforest',
     config = function()
-      vim.opt.background = 'dark'
-      vim.g.gruvbox_baby_background_color = 'dark'
-      vim.g.gruvbox_baby_function_style = 'NONE'
-      vim.g.gruvbox_baby_keyword_style = 'NONE'
-
-      vim.cmd([[colorscheme gruvbox-baby]])
-    end
+      vim.g.everforest_diagnostic_text_highlight = 1
+      vim.g.everforest_diagnostic_line_highlight = 1
+      vim.g.everforest_diagnostic_virtual_text = 'colored'
+      vim.cmd 'colorscheme everforest'
+    end,
   }
 
   -- Lualine
@@ -20,15 +28,15 @@ require('packer').startup(function(use)
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function()
-      require('lualine').setup({
-        options = { theme = 'gruvbox-baby' },
+      require('lualine').setup {
+        options = { theme = 'everforest' },
         sections = {
           lualine_x = { 'filetype' },
           lualine_y = {},
-          lualine_z = { '%l/%L' }
+          lualine_z = { '%l/%L' },
         },
-      })
-    end
+      }
+    end,
   }
 
   -- Tabline
@@ -37,14 +45,14 @@ require('packer').startup(function(use)
     tag = 'v2.*',
     requires = 'kyazdani42/nvim-web-devicons',
     config = function()
-      require('bufferline').setup({
+      require('bufferline').setup {
         options = {
           mode = 'tabs',
           show_close_icon = false,
-          show_buffer_close_icons = false
-        }
-      })
-    end
+          show_buffer_close_icons = false,
+        },
+      }
+    end,
   }
 
   -- Gitsigns (gutter)
@@ -52,7 +60,7 @@ require('packer').startup(function(use)
     'lewis6991/gitsigns.nvim',
     config = function()
       require('gitsigns').setup()
-    end
+    end,
   }
 
   -- Git blame
@@ -61,7 +69,7 @@ require('packer').startup(function(use)
     config = function()
       -- Disable blame by default, toggle when needed
       vim.g.gitblame_enabled = 0
-    end
+    end,
   }
 
   -- Commentary
@@ -72,7 +80,7 @@ require('packer').startup(function(use)
   use {
     'nvim-treesitter/nvim-treesitter',
     config = function()
-      require('nvim-treesitter.configs').setup({
+      require('nvim-treesitter.configs').setup {
         ensure_installed = {
           'javascript',
           'typescript',
@@ -82,19 +90,19 @@ require('packer').startup(function(use)
           'lua',
           'vim',
           'html',
-          'css'
+          'css',
         },
         highlight = {
           enable = true,
         },
         indent = {
-          enable = true
+          enable = true,
         },
         context_commentstring = {
-          enable = true
-        }
-      })
-    end
+          enable = true,
+        },
+      }
+    end,
   }
 
   -- CamelCaseMotion
@@ -102,17 +110,8 @@ require('packer').startup(function(use)
     'bkad/CamelCaseMotion',
     config = function()
       vim.g.camelcasemotion_key = '<leader>'
-    end
+    end,
   }
-
-  -- LSP
-  use {
-    'williamboman/nvim-lsp-installer',
-    config = function()
-      require('nvim-lsp-installer').setup({})
-    end
-  }
-  use 'neovim/nvim-lspconfig'
 
   -- Completions
   use 'hrsh7th/cmp-nvim-lsp'
@@ -126,68 +125,88 @@ require('packer').startup(function(use)
     config = function()
       vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
-      local cmp = require('cmp')
-      local select_opts = { behavior = cmp.SelectBehavior.Select }
+      local cmp = require 'cmp'
+      local select_opts = {
+        behavior = cmp.SelectBehavior.Insert,
+        select = true,
+      }
 
-      cmp.setup({
+      cmp.setup {
         snippet = {
           expand = function(args)
             vim.fn['vsnip#anonymous'](args.body)
-          end
+          end,
         },
         sources = cmp.config.sources({
-          { name = 'nvim_lsp' }
+          { name = 'nvim_lsp' },
         }, { name = 'buffer' }),
         mapping = {
           ['<Up>'] = cmp.mapping.select_prev_item(select_opts),
           ['<Down>'] = cmp.mapping.select_next_item(select_opts),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }),
+          ['<CR>'] = cmp.mapping.confirm { select = true },
           ['<Tab>'] = cmp.mapping(function(fallback)
-            local col = vim.fn.col('.') - 1
-
             if cmp.visible() then
               cmp.select_next_item(select_opts)
-            elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-              fallback()
             else
-              cmp.complete()
+              fallback()
             end
           end, { 'i', 's' }),
-
           ['<S-Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item(select_opts)
             else
               fallback()
             end
-          end, { 'i', 's' })
-        }
-      })
+          end, { 'i', 's' }),
+        },
+      }
 
-      -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+      -- Use buffer source for `/`
       cmp.setup.cmdline('/', {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {
-          { name = 'buffer' }
-        }
+          { name = 'buffer' },
+        },
       })
 
-      local lspconfig = require('lspconfig')
+      -- Use cmdline & path source for ':'
+      cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = 'path' },
+        }, {
+          { name = 'cmdline' },
+        }),
+      })
+
+      local lspconfig = require 'lspconfig'
       local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-      lspconfig.tsserver.setup({ capabilities = capabilities })
-      lspconfig.jedi_language_server.setup({ capabilities = capabilities })
-      lspconfig.sumneko_lua.setup({
+      local disable_formatting = function(client)
+        client.resolved_capabilities.document_formatting = false
+      end
+
+      lspconfig.tsserver.setup {
         capabilities = capabilities,
+        on_attach = function(client)
+          disable_formatting(client)
+        end,
+      }
+      lspconfig.jedi_language_server.setup { capabilities = capabilities }
+      lspconfig.sumneko_lua.setup {
+        capabilities = capabilities,
+        on_attach = function(client)
+          disable_formatting(client)
+        end,
         settings = {
           Lua = {
             diagnostics = {
-              globals = { 'vim' }
-            }
-          }
-        }
-      })
-    end
+              globals = { 'vim' },
+            },
+          },
+        },
+      }
+    end,
   }
 
   -- File tree
@@ -196,34 +215,46 @@ require('packer').startup(function(use)
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function()
       require('nvim-tree').setup()
-    end
+    end,
   }
 
   -- Surround
-  use({
+  use {
     'kylechui/nvim-surround',
     config = function()
       require('nvim-surround').setup()
-    end
-  })
+    end,
+  }
 
   -- FZF
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { 'nvim-lua/plenary.nvim' }
+    requires = { 'nvim-lua/plenary.nvim' },
   }
 
-  -- Trim whitespaces
   use {
-    'cappyzawa/trim.nvim',
+    'jose-elias-alvarez/null-ls.nvim',
     config = function()
-      require('trim').setup({
-        patterns = {
-          [[%s/\s\+$//e]], -- remove unwanted spaces
-          [[%s/\($\n\s*\)\+\%$//]], -- trim last line
-          [[%s/\%^\n\+//]] -- trim first line
-        }
-      })
-    end
+      local null_ls = require 'null-ls'
+
+      local formatting = null_ls.builtins.formatting
+      local diagnostics = null_ls.builtins.diagnostics
+
+      local sources = {
+        formatting.prettierd,
+        formatting.stylua,
+        diagnostics.flake8,
+      }
+
+      null_ls.setup {
+        sources = sources,
+        on_attach = function(client)
+          if client.resolved_capabilities.document_formatting then
+            -- Format file on save
+            vim.cmd 'autocmd BufWritePre * lua vim.lsp.buf.formatting()'
+          end
+        end,
+      }
+    end,
   }
 end)

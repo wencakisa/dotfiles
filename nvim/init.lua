@@ -1,3 +1,3 @@
-require('mappings')
-require('packages')
-require('options')
+require 'mappings'
+require 'packages'
+require 'options'

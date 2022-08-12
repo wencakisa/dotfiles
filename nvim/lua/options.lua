@@ -36,3 +36,5 @@ vim.opt.relativenumber = true
 vim.opt.smartcase = true
 vim.opt.ignorecase = true
 vim.opt.incsearch = true
+
+vim.opt.termguicolors = true
