@@ -51,7 +51,7 @@ nmap('<leader>7', '7gt')
 map('', 'J', 'gJ')
 
 -- NERDTree bindings
-nmap('<C-t>', ':NvimTreeToggle<cr>')
+nmap('<leader>t', ':NvimTreeToggle<cr>')
 nmap('<C-f>', ':NvimTreeFindFile<cr>')
 
 -- Ctrl+g toggles Git blame
