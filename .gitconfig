@@ -8,17 +8,13 @@
 
 [push]
   default = current
+  autoSetupRemote = true
 
 [init]
   defaultBranch = master
 
 [blame]
   date = format:"%d/%m/%Y [%H:%M]"
-
-[alias]
-  undo = reset --soft HEAD^
-  amend = commit --amend
-  unstage = reset HEAD
 
 [color "branch"]
   current = yellow reverse
