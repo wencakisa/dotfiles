@@ -50,8 +50,8 @@ nmap('<leader>7', '7gt')
 -- Join lines without redundant <space>
 map('', 'J', 'gJ')
 
--- NERDTree bindings
-nmap('<leader>t', ':NvimTreeToggle<cr>')
+-- NvimTree
+nmap('<C-t>', ':NvimTreeToggle<cr>')
 nmap('<C-f>', ':NvimTreeFindFile<cr>')
 
 -- Ctrl+g toggles Git blame
