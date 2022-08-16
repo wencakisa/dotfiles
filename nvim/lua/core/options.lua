@@ -1,40 +1,36 @@
--- Show command in the bottom-right corner of the screen
-vim.opt.showcmd = true
+local o = vim.opt
 
 -- Command-line autocompletion
-vim.opt.wildmenu = true
+o.wildmenu = true
 
 -- Use system clipboard
-vim.opt.clipboard = 'unnamedplus'
+o.clipboard = 'unnamedplus'
 
 -- Indentation
-vim.opt.expandtab = true
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.smartindent = true
-vim.opt.wrap = false
+o.expandtab = true
+o.tabstop = 2
+o.softtabstop = 2
+o.shiftwidth = 2
+o.smartindent = true
+o.wrap = false
 
 -- Start scrolling when you reach five lines before the end of the screen.
 -- Helps with the neck pain :P
-vim.opt.scrolloff = 5
+o.scrolloff = 5
 
 -- Do not wrap lines on a new line
-vim.opt.tw = 0
+o.tw = 0
 
 -- Highlight current line
-vim.opt.cursorline = true
-
--- Better, faster, stronger
-vim.opt.ttyfast = true
+o.cursorline = true
 
 -- Line numbers
-vim.opt.number = true
-vim.opt.relativenumber = true
+o.number = true
+o.relativenumber = true
 
 -- Searching
-vim.opt.smartcase = true
-vim.opt.ignorecase = true
-vim.opt.incsearch = true
+o.smartcase = true
+o.ignorecase = true
+o.incsearch = true
 
-vim.opt.termguicolors = true
+o.termguicolors = true
