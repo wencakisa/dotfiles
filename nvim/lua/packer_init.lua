@@ -80,7 +80,4 @@ require('packer').startup(function(use)
 
   -- Null LS (linting, formatting)
   use 'jose-elias-alvarez/null-ls.nvim'
-
-  -- Startup screen
-  use 'goolord/alpha-nvim'
 end)

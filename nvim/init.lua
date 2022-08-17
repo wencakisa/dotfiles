@@ -6,7 +6,6 @@ require 'core/mappings'
 require 'core/options'
 require 'core/colors'
 
-require 'plugins/alpha'
 require 'plugins/null-ls'
 require 'plugins/lualine'
 require 'plugins/bufferline'
