@@ -39,8 +39,9 @@ require('packer').startup(function(use)
   -- Git blame
   use 'f-person/git-blame.nvim'
 
-  -- Commentary
+  -- Tim Pope plugins
   use 'tpope/vim-commentary'
+  use 'tpope/vim-abolish'
 
   -- Treesitter
   use 'JoosepAlviste/nvim-ts-context-commentstring'
