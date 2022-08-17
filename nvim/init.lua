@@ -5,6 +5,7 @@ require 'packer_init'
 require 'core/mappings'
 require 'core/options'
 require 'core/colors'
+require 'core/commands'
 
 require 'plugins/null-ls'
 require 'plugins/lualine'
