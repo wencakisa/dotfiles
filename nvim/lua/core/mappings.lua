@@ -57,6 +57,6 @@ nmap('<C-f>', ':NvimTreeFindFile<cr>')
 -- Ctrl+g toggles Git blame
 nmap('<C-g>', ':GitBlameToggle<cr>')
 
--- Custom commands defined in `commands.lua`
+-- Custom commands defined in `/commands`
 nmap('<leader>p', ':Print<cr>')
 nmap('<leader>d', ':Debugger<cr>')

@@ -7,7 +7,7 @@ local utils = require 'core/commands/utils'
 
 local M = { name = 'Debugger' }
 
-function M.command()
+function M.command_fn()
   local debugger_statement
 
   if utils.is_python() then

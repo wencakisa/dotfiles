@@ -7,7 +7,7 @@ local utils = require 'core/commands/utils'
 
 local M = { name = 'Print' }
 
-function M.command()
+function M.command_fn()
   local print_function
 
   if utils.is_lua() or utils.is_python() then
