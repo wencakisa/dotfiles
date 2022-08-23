@@ -3,30 +3,20 @@ require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- LSP
-  use {
-    'williamboman/nvim-lsp-installer',
-    config = function()
-      require('nvim-lsp-installer').setup {}
-    end,
-  }
-
+  use 'williamboman/nvim-lsp-installer'
   use 'neovim/nvim-lspconfig'
 
-  -- Colorscheme
+  -- Colorschemes
   use 'sainnhe/everforest'
+  use 'EdenEast/nightfox.nvim'
 
-  -- Lualine
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-  }
+  -- File tree & Lualine (requires devicons)
+  use 'kyazdani42/nvim-web-devicons'
+  use 'kyazdani42/nvim-tree.lua'
+  use 'nvim-lualine/lualine.nvim'
 
   -- Tabline
-  use {
-    'akinsho/bufferline.nvim',
-    tag = 'v2.*',
-    requires = 'kyazdani42/nvim-web-devicons',
-  }
+  use { 'akinsho/bufferline.nvim', tag = 'v2.*' }
 
   -- Gitsigns (gutter)
   use {
@@ -58,12 +48,6 @@ require('packer').startup(function(use)
   use 'hrsh7th/cmp-vsnip'
   use 'hrsh7th/vim-vsnip'
   use 'hrsh7th/nvim-cmp'
-
-  -- File tree
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-  }
 
   -- Surround
   use {
