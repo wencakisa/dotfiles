@@ -7,6 +7,7 @@ local sources = {
   formatting.prettierd,
   formatting.stylua,
   formatting.isort,
+  formatting.black.with { extra_args = { '--fast' } },
   diagnostics.flake8,
 }
 

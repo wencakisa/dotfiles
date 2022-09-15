@@ -56,6 +56,7 @@ nmap('<C-f>', ':NvimTreeFindFile<cr>')
 
 -- Ctrl+g toggles Git blame
 nmap('<C-g>', ':GitBlameToggle<cr>')
+nmap('<C-h>', ':GitBlameOpenCommitURL<cr>')
 
 -- Custom commands defined in `/commands`
 nmap('<leader>p', ':Print<cr>')
