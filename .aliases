@@ -39,8 +39,8 @@ alias pya='pyenv activate'
 alias pyd='pyenv deactivate'
 alias pye='pyenv virtualenv'
 
-# FernTech
-alias febe='cd && j ferntech-backend && source envs/staging_influx.sh'
-alias fefe='cd && j ferntech-frontend'
-alias apfe='cd && j oes-fe'
-alias apbe='cd && j oes-be'
+# Kallanish / KIS
+alias kibe='cd && j kis-backend'
+alias kife='cd && j kis-backoffice'
+alias kabe='cd && j kallanish-backend'
+alias kafe='cd && j kallanish-frontend'
