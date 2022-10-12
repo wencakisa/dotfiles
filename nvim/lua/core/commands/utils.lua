@@ -19,9 +19,9 @@ function M.is_js()
   local filetype = buffer_options.filetype
 
   return filetype == 'javascript'
-    or filetype == 'typescript'
-    or filetyle == 'javascriptreact'
-    or filetyle == 'typescriptreact'
+      or filetype == 'typescript'
+      or filetype == 'javascriptreact'
+      or filetype == 'typescriptreact'
 end
 
 function M.append_line(content)

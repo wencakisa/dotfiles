@@ -58,7 +58,7 @@ local lspconfig = require 'lspconfig'
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local disable_formatting = function(client)
-  client.resolved_capabilities.document_formatting = false
+  client.server_capabilities.documentFormattingProvider = false
 end
 
 lspconfig.tsserver.setup {

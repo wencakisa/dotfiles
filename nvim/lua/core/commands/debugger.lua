@@ -1,4 +1,3 @@
---
 -- Debugger command
 -- Inserts a debugger statement in each specified language
 --

@@ -13,10 +13,15 @@ local sources = {
 
 null_ls.setup {
   sources = sources,
-  on_attach = function(client)
-    if client.resolved_capabilities.document_formatting then
+  on_attach = function(client, bufnr)
+    if client.server_capabilities.documentFormattingProvider then
       -- Format file on save
-      vim.cmd 'autocmd BufWritePre * lua vim.lsp.buf.formatting()'
+      vim.api.nvim_create_autocmd('BufWritepre', {
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format { bufnr = bufnr }
+        end,
+      })
     end
   end,
 }
