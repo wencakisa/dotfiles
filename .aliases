@@ -42,5 +42,6 @@ alias pye='pyenv virtualenv'
 # Kallanish / KIS
 alias kibe='cd && j kis-backend'
 alias kife='cd && j kis-backoffice'
+alias kiwe='cd && j kis-website'
 alias kabe='cd && j kallanish-backend'
 alias kafe='cd && j kallanish-frontend'

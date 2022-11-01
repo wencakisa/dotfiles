@@ -9,6 +9,7 @@ local sources = {
   formatting.isort,
   formatting.black.with { extra_args = { '--fast' } },
   diagnostics.flake8,
+  diagnostics.eslint,
 }
 
 null_ls.setup {
