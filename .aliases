@@ -2,6 +2,9 @@
 
 alias vim='nvim'
 
+# https://github.com/ogham/exa
+alias ls="exa --icons"
+
 # Command line utils
 alias zshe='vim ~/.zshrc'
 alias zshs='source ~/.zshrc'
@@ -41,7 +44,7 @@ alias pye='pyenv virtualenv'
 
 # Kallanish / KIS
 alias kibe='cd && j kis-backend'
-alias kife='cd && j kis-backoffice'
-alias kiwe='cd && j kis-website'
+alias kife='cd && j kis-backoffice && nvm use'
+alias kiwe='cd && j kis-website && nvm use'
 alias kabe='cd && j kallanish-backend'
 alias kafe='cd && j kallanish-frontend'
