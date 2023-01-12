@@ -42,9 +42,18 @@ alias pya='pyenv activate'
 alias pyd='pyenv deactivate'
 alias pye='pyenv virtualenv'
 
+# Docker
+alias d='docker'
+alias dcu='d compose up'
+alias dcr='d compose run'
+alias dcd='d compose down'
+alias dcb='d compose build'
+
 # Kallanish / KIS
 alias kibe='cd && j kis-backend'
 alias kife='cd && j kis-backoffice && nvm use'
 alias kiwe='cd && j kis-website && nvm use'
 alias kabe='cd && j kallanish-backend'
 alias kafe='cd && j kallanish-frontend'
+alias dpms+='dcr backoffice python manage.py shell_plus'
+alias dpmm='dcr backoffice python manage.py migrate'
