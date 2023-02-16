@@ -73,7 +73,7 @@ lspconfig.jedi_language_server.setup {
     disable_formatting(client)
   end,
 }
-lspconfig.sumneko_lua.setup {
+lspconfig.lua_ls.setup {
   capabilities = capabilities,
   on_attach = function(client)
     disable_formatting(client)
