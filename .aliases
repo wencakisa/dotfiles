@@ -2,9 +2,6 @@
 
 alias vim='nvim'
 
-# https://github.com/ogham/exa
-alias ls="exa --icons"
-
 # Command line utils
 alias zshe='vim ~/.zshrc'
 alias zshs='source ~/.zshrc'
@@ -51,9 +48,11 @@ alias dcb='d compose build'
 
 # Kallanish / KIS
 alias kibe='cd && j kis-backend'
-alias kife='cd && j kis-backoffice && nvm use'
-alias kiwe='cd && j kis-website && nvm use'
+alias kife='cd && j kis-backoffice'
+alias kiwe='cd && j kis-website'
 alias kabe='cd && j kallanish-backend'
 alias kafe='cd && j kallanish-frontend'
 alias dpms+='dcr backoffice python manage.py shell_plus'
 alias dpmm='dcr backoffice python manage.py migrate'
+
+alias fd="fdfind"
