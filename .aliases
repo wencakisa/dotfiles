@@ -55,4 +55,8 @@ alias kafe='cd && j kallanish-frontend'
 alias dpms+='dcr backoffice python manage.py shell_plus'
 alias dpmm='dcr backoffice python manage.py migrate'
 
+alias nrd="npm run dev"
+alias nrs="npm run start"
+alias nrsb="npm run storybook"
+
 alias fd="fdfind"
