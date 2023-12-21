@@ -147,3 +147,4 @@ eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"

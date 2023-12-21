@@ -9,6 +9,7 @@ require('packer').startup(function(use)
   -- Colorschemes
   use 'sainnhe/everforest'
   use 'EdenEast/nightfox.nvim'
+  use 'ellisonleao/gruvbox.nvim'
 
   -- File tree & Lualine (requires devicons)
   use 'kyazdani42/nvim-web-devicons'
