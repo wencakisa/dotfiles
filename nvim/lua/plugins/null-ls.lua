@@ -6,21 +6,21 @@ local diagnostics = null_ls.builtins.diagnostics
 local sources = {
   formatting.prettierd,
   formatting.stylua,
-  formatting.isort,
-  formatting.black.with { extra_args = { '--fast' } },
-  diagnostics.flake8,
   diagnostics.eslint,
 }
+
+local event = 'BufWritePost'
+local async = event == 'BufWritePost'
 
 null_ls.setup {
   sources = sources,
   on_attach = function(client, bufnr)
-    if client.server_capabilities.documentFormattingProvider then
+    if client.supports_method 'textDocument/formatting' then
       -- Format file on save
-      vim.api.nvim_create_autocmd('BufWritepre', {
+      vim.api.nvim_create_autocmd(event, {
         buffer = bufnr,
         callback = function()
-          vim.lsp.buf.format { bufnr = bufnr }
+          vim.lsp.buf.format { bufnr = bufnr, async = async }
         end,
       })
     end

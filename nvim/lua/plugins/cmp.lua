@@ -61,7 +61,7 @@ local disable_formatting = function(client)
   client.server_capabilities.documentFormattingProvider = false
 end
 
-lspconfig.tsserver.setup {
+lspconfig.ts_ls.setup {
   capabilities = capabilities,
   on_attach = function(client)
     disable_formatting(client)

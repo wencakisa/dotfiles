@@ -7,7 +7,7 @@ require 'core/options'
 require 'core/colors'
 require 'core/commands'
 
-require 'plugins/nvim-lsp-installer'
+require 'plugins/lsp'
 require 'plugins/null-ls'
 require 'plugins/lualine'
 require 'plugins/bufferline'

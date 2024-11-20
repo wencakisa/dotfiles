@@ -3,8 +3,10 @@ require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- LSP
-  use 'williamboman/nvim-lsp-installer'
   use 'neovim/nvim-lspconfig'
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
+  use 'lukas-reineke/lsp-format.nvim'
 
   -- Colorschemes
   use 'sainnhe/everforest'
@@ -17,7 +19,7 @@ require('packer').startup(function(use)
   use 'nvim-lualine/lualine.nvim'
 
   -- Tabline
-  use { 'akinsho/bufferline.nvim', tag = 'v2.*' }
+  use { 'akinsho/bufferline.nvim' }
 
   -- Gitsigns (gutter)
   use {
@@ -66,4 +68,7 @@ require('packer').startup(function(use)
 
   -- Null LS (linting, formatting)
   use 'jose-elias-alvarez/null-ls.nvim'
+
+  -- Copilot
+  use 'github/copilot.vim'
 end)

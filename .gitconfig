@@ -19,6 +19,9 @@
 [blame]
   date = format:"%d/%m/%Y [%H:%M]"
 
+[branch]
+  sort = -committerdate
+
 [color "branch"]
   current = yellow reverse
   local = yellow
@@ -30,3 +33,11 @@
   old = red bold
   new = green bold
   whitespace = red reverse
+
+[rerere]
+  enabled = true
+  autoUpdate = true
+
+[maintenance]
+	repo = /Users/wencakisa/dev/kallanish-backend
+	repo = /Users/wencakisa/dev/kallanish-frontend
